@@ -36,7 +36,7 @@ test -z "$1" && { echo Error: no -- switch found ; exit 1 ; }
   test -z "$OK" && { OPS="$OPS $1" ; shift ; }
 done
 
-sysctl -w kernel.core_pattern="core" > /dev/null
+sysctl -w kernel.core_pattern=core > /dev/null
 sysctl -w kernel.randomize_va_space=0 > /dev/null
 echo performance | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor > /dev/null
 
