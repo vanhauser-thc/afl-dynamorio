@@ -1,6 +1,6 @@
 Installation
 ============
-1. download, compile and install afl => https://github.com/mirrorer/afl
+1. download, compile and install afl => https://github.com/vanhauser-thc/AFLplusplus
 2. download, compile and install dyninst => https://github.com/dyninst/dyninst
 3. download, compile and install afl-dyninst  => https://github.com/vanhauser-thc/afl-dyninst
 4. download, compile and install dynamorio => https://github.com/DynamoRIO/dynamorio
