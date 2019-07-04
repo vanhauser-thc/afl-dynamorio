@@ -4,25 +4,21 @@ all:	dynclean
 	@test -e afl || { echo Error: we need afl to symlink to an afl source folder ; exit 1 ; }
 	mkdir -p build
 	cd build && cmake .. -DDynamoRIO_DIR="$(DYNAMORIO_HOME)/cmake" && make
-	@gcc -o test test.c
 
 alternative:	dynclean
 	@test -e afl || { echo Error: we need afl to symlink to an afl source folder ; exit 1 ; }
 	mkdir -p build
 	cd build && cmake .. -DALTERNATIVE=ON -DDynamoRIO_DIR="$(DYNAMORIO_HOME)/cmake" && make
-	@gcc -o test test.c
 
 debug:	dynclean
 	@test -e afl || { echo Error: we need afl to symlink to an afl source folder ; exit 1 ; }
 	mkdir -p build
 	cd build && cmake .. -DDEBUG=ON -DDynamoRIO_DIR="$(DYNAMORIO_HOME)/cmake" && make
-	@gcc -o test test.c
 
 test:	dynclean
 	@test -e afl || { echo Error: we need afl to symlink to an afl source folder ; exit 1 ; }
 	mkdir -p build
 	cd build && cmake .. -DTESTER=ON -DDynamoRIO_DIR="$(DYNAMORIO_HOME)/cmake" && make
-	@gcc -o test test.c
 
 install:
 	install -d /usr/local/lib/dynamorio
