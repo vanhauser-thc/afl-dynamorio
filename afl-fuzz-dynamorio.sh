@@ -9,7 +9,7 @@ test -z "$1" -o "$1" = "-h" && {
   echo "  \"afl-dyninst -i program -o program_inst -D\""
   echo or use the option -forkserver which will will implement a fork server
   echo "in main(). You can specify a different entrypoint with -entrypoint otherfunc or 0x123456."
-  echo To set a higher memory requirement, set AFL_MEM=700 for 700mb, default is 500, minimum is 350
+  echo To set a higher memory requirement, set AFL_MEM=900 for 900mb, default is 700, minimum is 500
   exit 1
 }
 
@@ -20,7 +20,7 @@ test -e ./libafl-dynamorio.so && CLIENT=./libafl-dynamorio.so
 test -z "$CLIENT" -a -e "/usr/local/lib/dynamorio/libafl-dynamorio.so" && CLIENT=/usr/local/lib/dynamorio/libafl-dynamorio.so
 test -z "$CLIENT" && { echo Error: can not find libafl-dynamorio.so either in the current directory nor in /usr/local/lib/dynamorio ; exit 1 ; }
 
-test -z "$AFL_MEM" && AFL_MEM=500
+test -z "$AFL_MEM" && AFL_MEM=700
 
 AFLDYNAMORIO=""
 
@@ -36,10 +36,6 @@ test -z "$1" && { echo Error: no -- switch found ; exit 1 ; }
   test -z "$OK" && { OPS="$OPS $1" ; shift ; }
 done
 
-sysctl -w kernel.core_pattern=core > /dev/null
-sysctl -w kernel.randomize_va_space=0 > /dev/null
-echo performance | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor > /dev/null
-
 export AFL_SKIP_BIN_CHECK=1
 export DYNINSTAPI_RT_LIB=/usr/local/lib/libdyninstAPI_RT.so
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.
@@ -49,4 +45,4 @@ export AFL_EXIT_WHEN_DONE=1
 
 echo Running: afl-fuzz -m $AFL_MEM $OPS -- $DYNAMORIO_HOME/bin64/drrun -c "$CLIENT" $AFLDYNAMORIO $*
 sleep 1
-afl-fuzz -m $AFL_MEM $OPS -- $DYNAMORIO_HOME/bin64/drrun -c "$CLIENT" $AFLDYNAMORIO $*
+afl-fuzz -m $AFL_MEM $OPS -- $DYNAMORIO_HOME/bin64/drrun -root $DYNAMORIO_HOME -c "$CLIENT" $AFLDYNAMORIO $*
