@@ -305,7 +305,7 @@ DR_EXPORT void dr_client_main(client_id_t id, int argc, const char *argv[]) {
   std::string parse_err;
   dr_set_client_name("Running DynamoRIO afl-dynamorio", "https://mh-sec.de/");
   if (droption_parser_t::parse_argv(DROPTION_SCOPE_CLIENT, argc, argv, &parse_err, NULL) != 1) {
-    std::cout << "afl-dynamorio (c) 2018-2019 by Marc \"van Hauser\" Heuse <mh@mh-sec.de> AGPL 3.0" << std::endl;
+    std::cout << "afl-dynamorio (c) 2018-2020 by Marc \"van Hauser\" Heuse <mh@mh-sec.de> AGPL 3.0" << std::endl;
     std::cout << "===========================================================================" << std::endl;
     std::cout << droption_parser_t::usage_long(DROPTION_SCOPE_ALL, "", "", " (", ")", "  ", "\n");
     dr_abort();
