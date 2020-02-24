@@ -9,7 +9,7 @@ test -z "$1" -o "$1" = "-h" && {
   echo "  \"afl-dyninst -i program -o program_inst -D\""
   echo or use the option -forkserver which will will implement a fork server
   echo "in main(). You can specify a different entrypoint with -entrypoint otherfunc or 0x123456."
-  echo To set a higher memory requirement, set AFL_MEM=900 for 900mb, default is 700, minimum is 500
+  echo To set a higher memory requirement, set AFL_MEM=1000 for 1000mb, default is 700, minimum is 500
   exit 1
 }
 
@@ -20,7 +20,7 @@ test -e ./libafl-dynamorio.so && CLIENT=./libafl-dynamorio.so
 test -z "$CLIENT" -a -e "/usr/local/lib/dynamorio/libafl-dynamorio.so" && CLIENT=/usr/local/lib/dynamorio/libafl-dynamorio.so
 test -z "$CLIENT" && { echo Error: can not find libafl-dynamorio.so either in the current directory nor in /usr/local/lib/dynamorio ; exit 1 ; }
 
-test -z "$AFL_MEM" && AFL_MEM=700
+test -z "$AFL_MEM" && AFL_MEM=none
 
 AFLDYNAMORIO=""
 
