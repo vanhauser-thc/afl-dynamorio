@@ -5,7 +5,7 @@
 2. download, compile and install dyninst => https://github.com/dyninst/dyninst
 3. download, compile and install afl-dyninst  => https://github.com/vanhauser-thc/afl-dyninst
 4. download, compile and install dynamorio => https://github.com/DynamoRIO/dynamorio
-5. make a symlink to the afl folder here named "afl" , e.g. "ln -s ../afl afl"
+5. make a symlink to the afl folder here named "afl" , e.g. "ln -s ../AFLplusplus afl"
 6. export DYNAMORIO_HOME=/path/to/dynamorio/build directory
 7. make
 8. make install
@@ -26,7 +26,7 @@ AFL_MEM to a high value, e.g. 700 for 700MB
 ##When to use it
 when normal afl-dyninst is crashing the binary and qemu mode -Q is not
 an option.
-Dynamorio is x10 slower than Qemu, 25x slower than dyninst - however 10x
+Dynamorio is x10-50 slower than Qemu, 25x slower than dyninst - however 10x
 faster than Pintool, and works additionally on ARM and AARCH64.
 In memory fuzzing (function fuzzing) is a much faster option and implemented
 in a future release.
